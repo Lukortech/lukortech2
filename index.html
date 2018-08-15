@@ -22,8 +22,17 @@
 					
 	</head>
 	<body>
-    <div class="player">
-      <div class="container">
+    <div class="container">
+      <div id="playlist" class="setlist navigation hidden">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+      </div>
+<!-- =====================================================================================================-->
+      <div id="player" class="player">
         <!--top-->
         <div class="top">
           <!--navigation-->
@@ -38,7 +47,7 @@
               <a href="" onclick="repeat(); return false;"><i class="fas fa-redo-alt"></i></a>
             </div>
             <div class="menu">
-              <a href="" onclick="someFunction(); return false;"><i class="fas fa-bars"></i></a>
+              <a href="" id="menu" onclick="changeModal()"><i class="fas fa-bars" onclick="javascript:return false;"></i></a>
             </div>
           </div>
 
@@ -51,7 +60,7 @@
         <!--mid-->
         <div class="mid">
             <input type="range" id="volume" class="volume" min="0" max="100" value="0" oninput="showVal(this.value)">
-            <span style="font-size:8px; color: grey; padding:1em;" id="valBox"></span>
+            <span id="valBox"></span>
           <!--<div id="volume" class="volume"></div>-->
         </div>
         <!--bot-->
