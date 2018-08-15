@@ -44,8 +44,9 @@ small, .font_small {font-size: 0.667em;}
   grid-template-areas:"top"
                       "bottom";
   grid-template-columns: 1fr;
-  margin: 3em 10em;
   padding: 0;
+  background-color: white;
+  border-radius: 1em;
 }
 .setlistTop{
   display: grid;
@@ -54,6 +55,12 @@ small, .font_small {font-size: 0.667em;}
 }
 .setlistTop{
 
+}
+.backbutton{
+    background: none;
+    color: white;
+    color: inherit;
+    text-decoration: none; 
 }
 .container > .setlist > .playlist {list-style: none; margin: auto;}
 .container > .setlist > .playlist > li:first-child {border-top: transparent 1px solid;}
