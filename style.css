@@ -31,7 +31,7 @@ small, .font_small {font-size: 0.667em;}
 
 
 .container{
-  width: 80vmin;
+  width: 60vmin;
   margin: 5vmin auto;
 }
 
@@ -42,18 +42,41 @@ small, .font_small {font-size: 0.667em;}
   display: grid;
   grid-template-rows: 6vmin 84vmin;
   grid-template-areas:"top"
-                      "bottom";
+                      "bot";
   grid-template-columns: 1fr;
-  padding: 0;
   background-color: white;
   border-radius: 1em;
+  margin: auto;
+  opacity: 0;
+  visibility 0s, opacity 0.8s linear;
 }
 .setlistTop{
   display: grid;
   grid-area: top;
-  grid-template-columns: 1fr 5fr
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-areas: "back title questionmark";
+  
 }
-.setlistTop{
+.setlistTop > .back {
+  grid-area: back;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+.setlistTop > .title {
+  grid-area: title;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.setlistTop > .questionmark {
+  grid-area: questionmark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.setlistBot{
 
 }
 .backbutton{
@@ -95,6 +118,8 @@ small, .font_small {font-size: 0.667em;}
   grid-template-columns: 1fr;
   grid-template-rows: 62vmin 1vmin 27vmin;
   margin: auto;
+  visibility 0s, opacity 0.8s linear;
+  opacity: 1;
 }
 
 /* top is a place for navigation, picture, and name of a song*/
@@ -104,9 +129,10 @@ small, .font_small {font-size: 0.667em;}
   grid-template-columns: repeat(7,1fr);
   grid-template-rows: 0.4fr 1fr 0.4fr;
   grid-template-areas: "navigation navigation navigation navigation navigation navigation navigation" "pic pic pic pic pic pic pic" "name name name name name name name";
-  
-  background: url('https://images4.alphacoders.com/507/thumb-1920-5078.jpg')no-repeat center center fixed;
+  /*https://images4.alphacoders.com/507/thumb-1920-5078.jpg*/
+  background: url('https://images4.alphacoders.com/507/thumb-1920-5078.jpg') no-repeat center center fixed;
   background-size: cover;
+  
   border-radius: 1em 1em 0 0;
 }
 /* mid is a place for volume*/
@@ -141,7 +167,7 @@ small, .font_small {font-size: 0.667em;}
         grid-area: navigation;
         grid-template-columns: repeat(7,1fr);
         grid-template-areas: ". . loop shuffle repeat . menu";
-        background-color: rgba(96, 85, 143,0.3);
+        background-color: rgba(0, 0, 0, 0.4);
         border-radius: 1em 1em 0 0;
       }
       .player > .top > .navigation> .repeat {
@@ -178,7 +204,7 @@ small, .font_small {font-size: 0.667em;}
 }
 .player > .top > .name {
   grid-area: name;
-  background-color: rgba(96, 85, 143,0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
@@ -376,7 +402,9 @@ small, .font_small {font-size: 0.667em;}
   background: none;
   color: white;
 }
-
+.fa-angle-left{
+  color:black;
+}
 
 
 a {

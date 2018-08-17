@@ -28,12 +28,48 @@ req.send(null);
 */
 
 
-function changeModal() {
+/*function changeModal() {
     let el1 = document.getElementById('player')
     el1.classList.toggle("hidden");
     let el2 = document.getElementById('playlist')
     el2.classList.toggle("hidden");
-  console.log('should work')
+}*/
+
+function changeModalEase(){
+  if(document.getElementById('player').style.opacity === "0"){
+    setTimeout(function opacitySpan(){
+      document.getElementById('player').style.opacity = "1";
+      setTimeout(function hiddenSpan(){
+        document.getElementById('player').style.visibility = "visible";
+      }, 1000);
+    }, 2000);
+    setTimeout(function opacitySpan(){
+      document.getElementById('playlist').style.opacity = "0";
+      setTimeout(function hiddenSpan(){
+        document.getElementById('playlist').style.visibility = "hidden";
+      }, 1000);
+    }, 2000);
+  }
+  else{
+    setTimeout(function opacitySpan(){
+      document.getElementById('player').style.opacity = "0";
+      setTimeout(function hiddenSpan(){
+        document.getElementById('player').style.visibility = "hidden";
+      }, 1000);
+    }, 2000);
+    setTimeout(function opacitySpan(){
+      document.getElementById('playlist').style.opacity = "1";
+      setTimeout(function hiddenSpan(){
+        document.getElementById('playlist').style.visibility = "visible";
+      }, 1000);
+    }, 2000);
+  }
+
+
+  
 }
+
+
+
 
 //http://davidpots.com/jakeworry/017%20JSON%20Grouping,%20part%203/data.json
