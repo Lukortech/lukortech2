@@ -1,47 +1,59 @@
-function showVal(newVal){
-  document.getElementById("valBox").innerHTML = 'vol: ' + newVal;
+let volumeBar = document.getElementById('volume');
+volumeBar.addEventListener("click", function() {
+  let volumeBar = document.getElementById('volume');
+  let volumeValue = volumeBar.value;
+  showVolume(volumeValue);
+});
+
+volumeBar.addEventListener("mouseout", hideVolume);
+
+function showVolume(volume){
+  document.getElementById("valBox").innerHTML = 'vol: ' + volume;
   document.getElementById('valBox').style.visibility = "visible";
   document.getElementById('valBox').style.opacity = "1";
-  function volumeTrackColoring(v){
-    getComputedStyle(volume).setPropertyValue('--volumeTrack') = v;
-    document.body.style.setProperty('--volumeTrack', v); 
-  }
-  setTimeout(function opacitySpan(){
-    document.getElementById('valBox').style.opacity = "0";
-    setTimeout(function hiddenSpan(){
-      document.getElementById('valBox').style.visibility = "hidden";
-    }, 1000);
-  }, 2000);
 }
+function hideVolume(){
+  document.getElementById('valBox').style.opacity = "0";
+  document.getElementById('valBox').style.visibility = "hidden";
+}
+
 function changeModal() {
-    let el1 = document.getElementById('player')
-    el1.classList.toggle("hidden");
-    let el2 = document.getElementById('playlist')
-    el2.classList.toggle("hidden");
+  let player = document.getElementById('player');
+  let playlist = document.getElementById('playlist');
+  if(playlist.classList.contains('hidden')){
+    player.classList.toggle("hidden");
+    playlist.classList.toggle("hidden");
+  }
 }
 
 /* This array consists of 128 records of songs with keys like: 
 title  artist  year web_url  img_url and additional duration. 
 I filled it with some values just to show you that the code below works just fine :) 
 fe. check nr.8 and it's value of duration*/
+
+
 fetch('./assets/songs.json')
   .then(function(response) {
     return response.json();
   })
-  .then(function(songList) {
-    console.log(songList);
-    console.log(songList.songs[0].artist);
+  .then(function(json) {
+    // console.log(json);
+    // console.log(json.songs[0].artist); 
     var div = document.createElement('div');
     document.getElementById('listOut').appendChild(div);
-    songList.songs.forEach(function (item,index) {
+    
+    json.songs.forEach(function (item,index) {
       var playListArtist = document.createElement('div');    
       var playListTitle = document.createElement('div');
       div.appendChild(playListArtist);
       div.appendChild(playListTitle);
+
       playListArtist.innerHTML +=  '<span class="maxtime">' + timeDisplayHours(item.duration)+timeDisplayMinutes(item.duration)+timeDisplaySeconds(item.duration)+'</span>'+' '+item.artist;
       playListArtist.className = "artist";
-      playListTitle.innerHTML += '<a href="updateCurrentSong(item .title,item.artist);">' + (index+1) + '.' + item.title + '</a>';
+
+      playListTitle.innerHTML += '<a href="updateCurrentSong(item.title,item.artist);">' + (index+1) + '.' + item.title + '</a>';
       playListTitle.className = "title";
+
       function timeDisplayHours(maxTime){
         maxTime = Number(maxTime);
         var h = Math.floor(maxTime / 3600);
@@ -60,16 +72,18 @@ fetch('./assets/songs.json')
         if(s>=1){return s+' |'}
         else{return '00'+' |'}
       }
-      let = titlePlaceholder = document.getElementById('title');
-      let = artistPlaceholder = document.getElementById('artist');
-      function updateCurrentSong(title, artist){
-        let = titlePlaceholder = document.getElementById('title');
-        titlePlaceholder.innerHTML = title;
-        let = artistPlaceholder = document.getElementById('artist');
-        artistPlaceholder.innerHTML =  artist;
-      }
-      updateCurrentSong(item .title,item.artist)
     });
+    
+    for(let i=0; i<= json.songs.length ;i++){
+      updateCurrentSong(item.title,item.artist);
+    }
+    function updateCurrentSong(title, artist){
+      let = titlePlaceholder = document.getElementById('title');
+      titlePlaceholder.innerHTML = title;
+      let = artistPlaceholder = document.getElementById('artist');
+      artistPlaceholder.innerHTML =  artist;
+    }
+    
   });
 
 
