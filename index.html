@@ -20,18 +20,23 @@
   <title>HRtec web player</title>
     <script src="scripts.js" async></script>
 					
-	</head>
+  </head>
 	<body>
     <div class="container">
       <div id="playlist" class="setlist navigation hidden">
           <div class="setlistTop">
               <div class="back">
-                  <a href="" id="menu" onclick="changeModalEase()"><i class="fas fa-angle-left" onclick="javascript:return false;"></i></a>
+                  <a href="" id="menu">
+                    <i class="fas fa-angle-left" onclick="changeModal()"></i>
+                  </a>
               </div>
-              <div class="title">Playlist</div>
+              <div class="nameOfPlaylist">Playlist_name</div>
+              <div class="currenttime">2:13</div>
           </div>
           
-          <div class="setlistBot">lul</div>
+          <div class="setlistBot">
+            <div id="listOut"></div>
+          </div>
       </div>
 <!-- =====================================================================================================-->
       <div id="player" class="player">
@@ -49,7 +54,7 @@
               <a href="" onclick="repeat(); return false;"><i class="fas fa-redo-alt"></i></a>
             </div>
             <div class="menu">
-              <a href="" id="menu" onclick="changeModalEase()"><i class="fas fa-bars" onclick="javascript:return false;"></i></a>
+              <a href="" id="menu" onclick="changeModal()"><i class="fas fa-bars" onclick="javascript:return false;"></i></a>
             </div>
           </div>
 

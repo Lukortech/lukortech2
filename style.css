@@ -1,5 +1,28 @@
 root{
   --volumeTrack: 0%;
+  --currentPicture: url("https://images4.alphacoders.com/507/thumb-1920-5078.jpg");
+
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px transparent; 
+  border-radius: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darkslategrey; 
 }
 /*Falsy responsivness, will do for now. With use of : http://type-scale.com/*/
 html {font-size: 1em;}
@@ -12,7 +35,8 @@ body {
   margin: auto;
   background: url('assets/background.png') no-repeat center center fixed;
   background-size: cover;
-
+  width: 100%;
+  height:100%;
 }
 a {font-size: 1em;}
 p {margin-bottom: 1.3em;}
@@ -32,7 +56,8 @@ small, .font_small {font-size: 0.667em;}
 
 .container{
   width: 60vmin;
-  margin: 5vmin auto;
+  margin: auto;
+  padding: 5vmin;
 }
 
 
@@ -40,21 +65,20 @@ small, .font_small {font-size: 0.667em;}
 
 .setlist {
   display: grid;
-  grid-template-rows: 6vmin 84vmin;
+  grid-template-rows: 14vmin 76vmin;
   grid-template-areas:"top"
                       "bot";
   grid-template-columns: 1fr;
-  background-color: white;
+  background-color: rgb(238, 239, 245);
   border-radius: 1em;
   margin: auto;
-  opacity: 0;
-  visibility 0s, opacity 0.8s linear;
+  background-image: linear-gradient(rgba(0,0,0,0), white);
 }
 .setlistTop{
   display: grid;
   grid-area: top;
   grid-template-columns: 1fr 5fr 1fr;
-  grid-template-areas: "back title questionmark";
+  grid-template-areas: "back nameOfPlaylist currenttime";
   
 }
 .setlistTop > .back {
@@ -63,22 +87,75 @@ small, .font_small {font-size: 0.667em;}
   justify-content: center;
   align-items: center;
   color: black;
+  
 }
-.setlistTop > .title {
-  grid-area: title;
+.setlistTop > .nameOfPlaylist {
+  grid-area: nameOfPlaylist;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.4em;
 }
-.setlistTop > .questionmark {
-  grid-area: questionmark;
+.setlistTop > .currenttime {
+  grid-area: currenttime;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-}
-.setlistBot{
+  color: darkslategrey;
+  font-size: 0.8em;
 
 }
+.setlistBot{
+  overflow-y: scroll;
+  overflow-x:hidden;
+  margin-bottom: 2em;
+  
+}
+.setlistBot> #listOut {
+  padding: 1em;
+  
+}
+.setlistBot> #listOut:first-child {
+  padding-top: 0;
+}
+.setlistBot> #listOut:last-child {
+  padding-bottom: 0;
+}
+.setlistBot > #listOut > div {
+  display: grid;
+}
+.setlistBot > #listOut > div > div.artist {
+  
+  color: darkslategrey;
+  font-size:0.8em;
+  border-top: grey 1px solid;
+  padding: 1em 0 0 0;
+}
+.setlistBot > #listOut > div > div.artist > span.maxtime {
+  display: inline-block;
+}
+
+.setlistBot > #listOut > div > div.title {
+  display:flex;
+  justify-items: flex-start;
+  align-items: flex-start;
+  color: black;
+  font-size:1.2em;
+  padding: 0 0 1em 0;
+}
+.setlistBot > #listOut > div > div:first-child{
+  border-top: transparent 1px solid;
+}
+.setlistBot > #listOut > div > div:last-child{
+  border-top: transparent 1px solid;
+}
+
+
+
+
+
+
+
 .backbutton{
     background: none;
     color: white;
@@ -118,21 +195,20 @@ small, .font_small {font-size: 0.667em;}
   grid-template-columns: 1fr;
   grid-template-rows: 62vmin 1vmin 27vmin;
   margin: auto;
-  visibility 0s, opacity 0.8s linear;
-  opacity: 1;
 }
 
 /* top is a place for navigation, picture, and name of a song*/
 .top{
   display: grid;
   grid-area: top;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: 1fr;
   grid-template-rows: 0.4fr 1fr 0.4fr;
-  grid-template-areas: "navigation navigation navigation navigation navigation navigation navigation" "pic pic pic pic pic pic pic" "name name name name name name name";
+  grid-template-areas: "navigation" 
+                        "pic" 
+                        "name";
   /*https://images4.alphacoders.com/507/thumb-1920-5078.jpg*/
   background: url('https://images4.alphacoders.com/507/thumb-1920-5078.jpg') no-repeat center center fixed;
   background-size: cover;
-  
   border-radius: 1em 1em 0 0;
 }
 /* mid is a place for volume*/
@@ -226,8 +302,6 @@ small, .font_small {font-size: 0.667em;}
 /* MID */
 .player > .mid > .volume {
   grid-area: volume;
-  width: var(--volumeTrack);
-  background-color: red;
 }
 
 /* SLIDER============================================================================*/
