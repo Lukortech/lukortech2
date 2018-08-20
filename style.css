@@ -108,12 +108,11 @@ small, .font_small {font-size: 0.667em;}
 .setlistBot{
   overflow-y: scroll;
   overflow-x:hidden;
-  margin-bottom: 2em;
+  border:transparent 1em solid;
   
 }
 .setlistBot> #listOut {
   padding: 1em;
-  
 }
 .setlistBot> #listOut:first-child {
   padding-top: 0;
@@ -125,7 +124,6 @@ small, .font_small {font-size: 0.667em;}
   display: grid;
 }
 .setlistBot > #listOut > div > div.artist {
-  
   color: darkslategrey;
   font-size:0.8em;
   border-top: grey 1px solid;
@@ -143,6 +141,13 @@ small, .font_small {font-size: 0.667em;}
   font-size:1.2em;
   padding: 0 0 1em 0;
 }
+.setlistBot > #listOut > div > div.title > span {
+  margin:0 auto auto 0;
+  display:flex;
+  justify-items: flex-start;
+  align-items: flex-start;
+}
+
 .setlistBot > #listOut > div > div:first-child{
   border-top: transparent 1px solid;
 }
@@ -450,6 +455,11 @@ small, .font_small {font-size: 0.667em;}
 }
 
 .fa-play{
+  border: rgba(255,255,255,0) 1px solid;
+  background-color: #60558f;
+  font-size: 24px;
+}
+.fa-pause{
   border: rgba(255,255,255,0) 1px solid;
   background-color: #60558f;
   font-size: 24px;

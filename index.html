@@ -30,8 +30,8 @@
                     <i class="fas fa-angle-left" onclick="changeModal()"></i>
                   </a>
               </div>
-              <div class="nameOfPlaylist">Playlist_name</div>
-              <div class="currenttime">2:13</div>
+              <div class="nameOfPlaylist">Playlist_name</div> <!--Changable in next version.-->
+              <div class="currenttime">2:13</div> <!--little mark on what time of the current song is.-->
           </div>
           
           <div class="setlistBot">
@@ -76,13 +76,13 @@
             <a href="" onclick="someFunction(); return false;"><i class="fas fa-share-alt"></i></a>
           </div>
           <div class="back">
-            <a href="" onclick="someFunction(); return false;"><i class="fas fa-step-backward"></i></a>
+            <a href="javascript:previousButton();"><i id="back" class="fas fa-step-backward"></i></a>
           </div>
           <div class="play">
-            <a href="" onclick="someFunction(); return false;"><i class="fas fa-play"> </i></a>
+            <a href="javascript:playButton();"><i id="play" class="fas fa-play"> </i></a>
           </div>
           <div class="forth">
-            <a href="" onclick="someFunction(); return false;"><i class="fas fa-step-forward"></i></a>
+            <a href="javascript:nextButton();"><i id="forth" class="fas fa-step-forward"></i></a>
           </div>
           <div class="fav">
             <a href="" onclick="someFunction(); return false;"><i class="fas fa-heart"></i></a>

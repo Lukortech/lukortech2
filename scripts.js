@@ -1,30 +1,3 @@
-let volumeBar = document.getElementById('volume');
-volumeBar.addEventListener("click", function() {
-  let volumeBar = document.getElementById('volume');
-  let volumeValue = volumeBar.value;
-  showVolume(volumeValue);
-});
-
-volumeBar.addEventListener("mouseout", hideVolume);
-
-function showVolume(volume){
-  document.getElementById("valBox").innerHTML = 'vol: ' + volume;
-  document.getElementById('valBox').style.visibility = "visible";
-  document.getElementById('valBox').style.opacity = "1";
-}
-function hideVolume(){
-  document.getElementById('valBox').style.opacity = "0";
-  document.getElementById('valBox').style.visibility = "hidden";
-}
-
-function changeModal() {
-  let player = document.getElementById('player');
-  let playlist = document.getElementById('playlist');
-  if(playlist.classList.contains('hidden')){
-    player.classList.toggle("hidden");
-    playlist.classList.toggle("hidden");
-  }
-}
 
 /* This array consists of 128 records of songs with keys like: 
 title  artist  year web_url  img_url and additional duration. 
@@ -48,11 +21,12 @@ fetch('./assets/songs.json')
       div.appendChild(playListArtist);
       div.appendChild(playListTitle);
 
-      playListArtist.innerHTML +=  '<span class="maxtime">' + timeDisplayHours(item.duration)+timeDisplayMinutes(item.duration)+timeDisplaySeconds(item.duration)+'</span>'+' '+item.artist;
+      playListArtist.innerHTML +=  '<span class="maxtime">' + timeDisplayHours(item.duration)+timeDisplayMinutes(item.duration)+timeDisplaySeconds(item.duration)+'</span>'+' '+ '<span id="artistName">' + item.artist + '</span>';
       playListArtist.className = "artist";
 
-      playListTitle.innerHTML += '<a href="updateCurrentSong(item.title,item.artist);">' + (index+1) + '.' + item.title + '</a>';
+      playListTitle.innerHTML += '<span id="titleName">' + '<span id="index">'+ (index+1) + '</span>' + '. ' + item.title + '</span>';
       playListTitle.className = "title";
+      
 
       function timeDisplayHours(maxTime){
         maxTime = Number(maxTime);
@@ -72,46 +46,116 @@ fetch('./assets/songs.json')
         if(s>=1){return s+' |'}
         else{return '00'+' |'}
       }
+      
     });
-    
-    for(let i=0; i<= json.songs.length ;i++){
-      updateCurrentSong(item.title,item.artist);
-    }
-    function updateCurrentSong(title, artist){
-      let = titlePlaceholder = document.getElementById('title');
-      titlePlaceholder.innerHTML = title;
-      let = artistPlaceholder = document.getElementById('artist');
-      artistPlaceholder.innerHTML =  artist;
-    }
     
   });
 
 
+  let volumeBar = document.getElementById('volume');
+  volumeBar.addEventListener("click", function() {
+    let volumeBar = document.getElementById('volume');
+    let volumeValue = volumeBar.value;
+    showVolume(volumeValue);
+  });
+  
+  volumeBar.addEventListener("mouseout", hideVolume);
+  
+  function showVolume(volume){
+    document.getElementById("valBox").innerHTML = 'vol: ' + volume;
+    document.getElementById('valBox').style.visibility = "visible";
+    document.getElementById('valBox').style.opacity = "1";
+  }
+  function hideVolume(){
+    document.getElementById('valBox').style.opacity = "0";
+    document.getElementById('valBox').style.visibility = "hidden";
+  }
+  
+  function changeModal() {
+    let player = document.getElementById('player');
+    let playlist = document.getElementById('playlist');
+    if(playlist.classList.contains('hidden')){
+      player.classList.toggle("hidden");
+      playlist.classList.toggle("hidden");
+    }
+  }
+  
+  function playButton(){
+    button = document.getElementById('play');
+    button.classList.toggle("fa-play");
+    button.classList.toggle("fa-pause");
+  }
+  
+  function nextButton(){
+    button = document.getElementById('forth');
+  }
+  function previousButton(){
+    button = document.getElementById('back');
+    
+  }
 
 
 
-/*
-window.onload = function() {
-  json = JSON.parse('{"songs":[{"title":"1904","artist":"The Tallest Man on Earth","year":"2012","web_url":"http://www.songnotes.cc/songs/78-the-tallest-man-on-earth-1904","img_url":"http://fireflygrove.com/songnotes/images/artists/TheTallestManOnEarth.jpg"},{"title":"#40","artist":"Dave Matthews","year":"1999","web_url":"http://www.songnotes.cc/songs/119-dave-matthews-40","img_url":"http://fireflygrove.com/songnotes/images/artists/DaveMatthews.jpg"}]}');
-  json2 = JSON.parse(/assets/songs.json);
-    // Put the objects inside the <p>
-  document.querySelector(".objects").textContent = json2.songs
-  // Put a string of the objects in the <p>
-  document.querySelector(".objectString").textContent = JSON.stringify(json2.songs);
-  // Use the actual value
-  document.querySelector(".value").textContent = json2.songs[0].artist;
-}
-*/
+/* I've been working on this code but it's a little too much. 
+I know there is easier way to do it with framework, but I wanted it the hard way.
+
+
+    let = titlePlaceholder = document.getElementById('title').innerHTML;
+    let = artistPlaceholder = document.getElementById('artist').innerHTML;
+
+    titleElement = document.getElementById('titleName');
+    titleText = titleElement.innerHTML;
+    
+    artistElement = document.getElementById('artistName');
+    artistText = artistElement.innerHTML;
+    
+    
+    
+    titleElement.addEventListener("click", updateCurrentSong(titleText,artistText));
+    function updateCurrentSong(){
+      for(let i = 1; i<= json.songs.length; i++){
+        if(titleText!=titlePlaceholder){
+          console.log(json.songs.length); //check
+          titlePlaceholder.innerHTML = titleText;
+          artistPlaceholder.innerHTML = artistText;
+        }
+      }
+    }
+    
+  function updateCurrentSong(title, artist){
+    let = titlePlaceholder = document.getElementById('title');
+    titlePlaceholder.innerHTML = title;
+    let = artistPlaceholder = document.getElementById('artist');
+    artistPlaceholder.innerHTML =  artist;
+    let exactSong = document.getElementsByClassName('title');
+    let number = json.songs.indexOf("Apple");
+
+    for(let i=0; i<= json.songs.length ;i++){
+      updateCurrentSong(item.title,item.artist);
+    }
+  }
+  
+  
+  
+document.addEventListener("click", updateArtist, updateTitle)
+  function updateTitle(value){
+    let titleBox = document.getElementById('title');
+    let value = document.getElementById('value').innerHTML;
+    for(var i=1; i<json.songs.length; i++){
+      if(value == i){
+        console.log(json.songs[i].artist + json.songs[i].title)
+      }
+    }
+  }
+  function updateArtist(){
+    for(var i=1; i<json.songs.length; i++){
+      
+    }
+  }
+  
+  
+  */
 
 
 
-/*var json = fetch("./assets/songs.json")
-  .then(response => response.json())
-  .then(response => console.log(response));*/
-
-
-
-
-// The json file availible online: for fater load hosted locally http://davidpots.com/jakeworry/017%20JSON%20Grouping,%20part%203/data.json
-
-// document.getElementById("songList").innerHTML = parsed.id + ", " + obj.age;
+// The json file availible online: for faster load hosted locally http://davidpots.com/jakeworry/017%20JSON%20Grouping,%20part%203/data.json
