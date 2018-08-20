@@ -20,18 +20,23 @@
   <title>HRtec web player</title>
     <script src="scripts.js" async></script>
 					
-	</head>
+  </head>
 	<body>
     <div class="container">
       <div id="playlist" class="setlist navigation hidden">
           <div class="setlistTop">
               <div class="back">
-                  <a href="" id="menu" onclick="changeModalEase()"><i class="fas fa-angle-left" onclick="javascript:return false;"></i></a>
+                  <a href="" id="menu">
+                    <i class="fas fa-angle-left" onclick="changeModal()"></i>
+                  </a>
               </div>
-              <div class="title">Playlist</div>
+              <div class="nameOfPlaylist">Playlist_name</div> <!--Changable in next version.-->
+              <div class="currenttime">2:13</div> <!--little mark on what time of the current song is.-->
           </div>
           
-          <div class="setlistBot">lul</div>
+          <div class="setlistBot">
+            <div id="listOut"></div>
+          </div>
       </div>
 <!-- =====================================================================================================-->
       <div id="player" class="player">
@@ -49,7 +54,7 @@
               <a href="" onclick="repeat(); return false;"><i class="fas fa-redo-alt"></i></a>
             </div>
             <div class="menu">
-              <a href="" id="menu" onclick="changeModalEase()"><i class="fas fa-bars" onclick="javascript:return false;"></i></a>
+              <a href="" id="menu" onclick="changeModal()"><i class="fas fa-bars" onclick="javascript:return false;"></i></a>
             </div>
           </div>
 
@@ -61,7 +66,7 @@
         </div>
         <!--mid-->
         <div class="mid">
-            <input type="range" id="volume" class="volume" min="0" max="100" value="0" oninput="showVal(this.value)">
+            <input type="range" id="volume" class="volume" min="0" max="100" value="0">
             <span id="valBox"></span>
           <!--<div id="volume" class="volume"></div>-->
         </div>
@@ -71,13 +76,13 @@
             <a href="" onclick="someFunction(); return false;"><i class="fas fa-share-alt"></i></a>
           </div>
           <div class="back">
-            <a href="" onclick="someFunction(); return false;"><i class="fas fa-step-backward"></i></a>
+            <a href="javascript:previousButton();"><i id="back" class="fas fa-step-backward"></i></a>
           </div>
           <div class="play">
-            <a href="" onclick="someFunction(); return false;"><i class="fas fa-play"> </i></a>
+            <a href="javascript:playButton();"><i id="play" class="fas fa-play"> </i></a>
           </div>
           <div class="forth">
-            <a href="" onclick="someFunction(); return false;"><i class="fas fa-step-forward"></i></a>
+            <a href="javascript:nextButton();"><i id="forth" class="fas fa-step-forward"></i></a>
           </div>
           <div class="fav">
             <a href="" onclick="someFunction(); return false;"><i class="fas fa-heart"></i></a>
